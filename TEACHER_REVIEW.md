@@ -1,4 +1,4 @@
-# Évaluation Professeur - Projet GlobalExam AI
+# - Projet GlobalExam AI
 
 ## 📚 Aperçu du Projet Éducatif
 
