@@ -39,7 +39,6 @@ Le système est construit avec une architecture modulaire :
 global-exam-ia/
 ├── 📄 README.md                    # Documentation principale
 ├── 📄 INSTALLATION_FR.md           # Guide d'installation français
-├── 📄 TEACHER_REVIEW.md            # Évaluation académique
 ├── 📄 LICENSE                      # Licence MIT
 ├── 📄 requirements.txt             # Dépendances Python
 ├── 📄 .gitignore                   # Règles Git
