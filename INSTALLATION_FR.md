@@ -16,6 +16,10 @@ cd global-exam-ia
 
 ### 2. Installer les Dépendances
 ```bash
+# Pour utilisation locale complète
+pip install -r requirements-client.txt
+
+# Ou installation minimale (serveur seulement)
 pip install -r requirements.txt
 ```
 
