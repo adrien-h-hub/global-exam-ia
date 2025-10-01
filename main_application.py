@@ -26,9 +26,14 @@ sys.path.insert(0, str(current_dir))
 
 # Import our custom modules
 try:
-    from security_system_v3 import OneTimeLicenseManager
+    from security_system_v4 import ServerControlledSecurity
     from ocr_ai_analysis import OCREngine, AIQuestionAnalyzer
     from visual_automation import VisualDetector, SmartClicker, QuestionTypeHandler
+    
+    # Add adaptive clicking system
+    sys.path.insert(0, str(current_dir.parent))
+    from adaptive_clicking_system import AdaptiveClickingSystem
+    
     MODULES_AVAILABLE = True
     print("[IMPORT] All modules imported successfully")
 except ImportError as e:
@@ -64,8 +69,8 @@ class GlobalExamAI:
         if not MODULES_AVAILABLE:
             raise RuntimeError("Required modules not available")
         
-        # License system
-        self.license_manager = OneTimeLicenseManager(app_name)
+        # Server-controlled security system
+        self.security_manager = ServerControlledSecurity(app_name)
         print("[✓] Security system initialized")
         
         # OCR and AI analysis
@@ -77,7 +82,11 @@ class GlobalExamAI:
         self.visual_detector = VisualDetector()
         self.smart_clicker = SmartClicker()
         self.question_handler = QuestionTypeHandler(self.smart_clicker)
+        
+        # Adaptive clicking system (new!)
+        self.adaptive_clicker = AdaptiveClickingSystem()
         print("[✓] Visual automation initialized")
+        print("[✓] Adaptive clicking system initialized")
         
         # Statistics tracking
         self.stats = {
@@ -91,27 +100,32 @@ class GlobalExamAI:
         print(f"[✓] {app_name} fully initialized")
         print("="*60)
     
-    def check_license_authorization(self) -> bool:
+    def check_server_authorization(self) -> bool:
         """
-        Check license authorization before running automation
+        Check server authorization before running automation
         
         Returns:
             True if authorized to proceed
         """
-        print("\n[LICENCE] Vérification de l'autorisation...")
+        print("\n[SÉCURITÉ] Vérification de l'autorisation serveur...")
         
         try:
-            authorized = self.license_manager.check_authorization()
+            authorized = self.security_manager.check_authorization()
             
             if authorized:
-                print("[LICENCE] ✓ Licence valide - démarrage de l'automatisation")
+                session_info = self.security_manager.get_session_info()
+                if session_info:
+                    print(f"[SÉCURITÉ] ✓ Accès autorisé pour {session_info['user_id']}")
+                    print(f"[SÉCURITÉ] Mode : {session_info.get('mode', 'online')}")
+                else:
+                    print("[SÉCURITÉ] ✓ Accès autorisé")
                 return True
             else:
-                print("[LICENCE] ✗ Licence invalide - impossible de continuer")
+                print("[SÉCURITÉ] ✗ Accès refusé - contactez le propriétaire")
                 return False
                 
         except Exception as e:
-            print(f"[LICENCE] Vérification échouée : {e}")
+            print(f"[SÉCURITÉ] Vérification échouée : {e}")
             return False
     
     def analyze_current_question(self) -> Dict[str, Any]:
@@ -283,26 +297,41 @@ class GlobalExamAI:
             q_type = analysis['final_type']
             self.stats['question_types'][q_type] = self.stats['question_types'].get(q_type, 0) + 1
             
-            # Answer based on analysis
+            # Answer based on analysis using ADAPTIVE SYSTEM
             success = False
+            suggested_answer = analysis.get('suggested_answer', 'c')
             
-            if q_type == 'true_false':
-                success = self.question_handler.handle_true_false(analysis)
-            elif q_type == 'multiple_choice':
-                success = self.question_handler.handle_multiple_choice(analysis)
-            elif q_type == 'fill_blank':
-                success = self.question_handler.handle_fill_blank(analysis)
-            elif q_type == 'matching':
-                success = self.question_handler.handle_matching(analysis)
-            else:
-                # Fallback: try multiple choice
-                print("[FALLBACK] Unknown type, trying multiple choice")
-                success = self.question_handler.handle_multiple_choice(analysis)
+            print(f"[ADAPTIVE] Using adaptive clicking for {q_type}")
+            print(f"[ADAPTIVE] Suggested answer: {suggested_answer}")
             
-            # Validate answer
+            # Use adaptive clicking system that handles dynamic layouts
+            success = self.adaptive_clicker.click_answer(q_type, suggested_answer)
+            
+            if not success:
+                print("[FALLBACK] Adaptive clicking failed, trying legacy system...")
+                # Fallback to old system
+                if q_type == 'true_false':
+                    success = self.question_handler.handle_true_false(analysis)
+                elif q_type == 'multiple_choice':
+                    success = self.question_handler.handle_multiple_choice(analysis)
+                elif q_type == 'fill_blank':
+                    success = self.question_handler.handle_fill_blank(analysis)
+                elif q_type == 'matching':
+                    success = self.question_handler.handle_matching(analysis)
+                else:
+                    print("[FALLBACK] Trying multiple choice as last resort")
+                    success = self.question_handler.handle_multiple_choice(analysis)
+            
+            # Validate answer using adaptive system
             if success:
                 time.sleep(1.0)  # Wait before validation
-                validation_success = self.smart_clicker.validate_answer()
+                
+                # Try adaptive submit first
+                validation_success = self.adaptive_clicker.submit_answer()
+                
+                if not validation_success:
+                    print("[FALLBACK] Adaptive submit failed, trying legacy validation...")
+                    validation_success = self.smart_clicker.validate_answer()
                 
                 if validation_success:
                     self.stats['questions_successful'] += 1
@@ -336,9 +365,9 @@ class GlobalExamAI:
         print("• Reliability: Multiple fallbacks + Error recovery")
         print("="*70)
         
-        # License check
-        if not self.check_license_authorization():
-            return {'error': 'License authorization failed'}
+        # Server security check
+        if not self.check_server_authorization():
+            return {'error': 'Server authorization failed'}
         
         # Pre-flight checks
         print("\n[PREFLIGHT] System checks...")
