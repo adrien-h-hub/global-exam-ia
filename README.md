@@ -147,7 +147,7 @@ python run_app.py
 ```bash
 python launch_secure_app.py
 # → Control Panel (Option 2)
-# → Access code: 602172
+# → Access code
 # → Manage users globally
 ```
 
