@@ -147,7 +147,7 @@ python run_app.py
 ```bash
 python launch_secure_app.py
 # → Panneau de Contrôle (Option 2)
-# → Code d'accès : 602172
+# → Code d'accès 
 # → Gérez les utilisateurs globalement
 ```
 
