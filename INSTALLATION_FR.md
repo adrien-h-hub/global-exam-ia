@@ -6,7 +6,7 @@
 - **Python 3.8+** ([Télécharger ici](https://python.org))
 - **Connexion Internet** (pour l'installation des dépendances)
 
-## ⚡ Installation Rapide
+## ⚡ Installation Automatique (Recommandée)
 
 ### 1. Cloner le Repository
 ```bash
@@ -14,18 +14,28 @@ git clone https://github.com/adrien-h-hub/global-exam-ia.git
 cd global-exam-ia
 ```
 
-### 2. Installer les Dépendances
+### 2. Installation Automatique
+```bash
+# Windows: Double-cliquez sur ce fichier
+INSTALL_AND_RUN.bat
+
+# Ou avec Python
+python auto_setup.py
+```
+
+**C'est tout! L'application s'installe et se lance automatiquement!**
+
+## 📋 Installation Manuelle (Alternative)
+
+### 1. Installer les Dépendances Manuellement
 ```bash
 # Pour utilisation locale complète
 pip install -r requirements-client.txt
-
-# Ou installation minimale (serveur seulement)
-pip install -r requirements.txt
 ```
 
-### 3. Lancer l'Application
+### 2. Lancer l'Application
 ```bash
-python launch_secure_app.py
+python run_app.py
 ```
 
 ## 🎮 Utilisation

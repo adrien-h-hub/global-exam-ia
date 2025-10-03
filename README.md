@@ -3,31 +3,39 @@
 [![GitHub](https://img.shields.io/badge/GitHub-adrien--h--hub%2Fglobal--exam--ia-blue?logo=github)](https://github.com/adrien-h-hub/global-exam-ia)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python)](https://python.org)
 [![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Windows-lightgrey)](https://www.microsoft.com/windows)
 
 An advanced AI-powered automation system featuring security, OCR, AI analysis, and visual automation.
 
 ## 🚀 Quick Start
+
+### **🔧 Automatic Installation (Recommended)**
 
 ```bash
 # Clone repository
 git clone https://github.com/adrien-h-hub/global-exam-ia.git
 cd global-exam-ia
 
-# Install dependencies
-pip install -r requirements.txt
+# Windows: Double-click this file
+INSTALL_AND_RUN.bat
 
-# Run application (Python)
-python launch_secure_app.py
+# Or run with Python
+python auto_setup.py
+```
 
-# Or use Windows launcher
-launch.bat
+### **📋 Manual Installation**
+
+```bash
+# Install dependencies manually
+pip install -r requirements-client.txt
+
+# Run application
+python run_app.py
 ```
 
 ## 📸 Screenshots
 
-```
-  ██████╗ ██╗      ██████╗ ██████╗  █████╗ ██╗     ███████╗██╗  ██╗ █████╗ ███╗   ███╗
+````
+{{ ... }}
  ██╔════╝ ██║     ██╔═══██╗██╔══██╗██╔══██╗██║     ██╔════╝╚██╗██╔╝██╔══██╗████╗ ████║
  ██║  ███╗██║     ██║   ██║██████╔╝███████║██║     █████╗   ╚███╔╝ ███████║██╔████╔██║
  ██║   ██║██║     ██║   ██║██╔══██╗██╔══██║██║     ██╔══╝   ██╔██╗ ██╔══██║██║╚██╔╝██║
