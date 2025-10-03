@@ -1,41 +1,91 @@
+<div align="center">
+
 # 🚀 Guide d'Installation - GlobalExam AI
+### *Système d'Automatisation Intelligent Avancé*
 
-## 📋 Prérequis
+<p align="center">
+  <img src="https://img.shields.io/badge/Installation-Automatique-success?style=for-the-badge" alt="Installation">
+  <img src="https://img.shields.io/badge/Temps-2%20Minutes-blue?style=for-the-badge" alt="Temps">
+  <img src="https://img.shields.io/badge/Difficulté-Facile-green?style=for-the-badge" alt="Difficulté">
+</p>
 
-- **Windows 10/11** (64-bit)
-- **Python 3.8+** ([Télécharger ici](https://python.org))
-- **Connexion Internet** (pour l'installation des dépendances)
+---
+
+</div>
+
+## 📋 Prérequis Système
+
+<table align="center">
+<tr>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/-🖥️-blue?style=for-the-badge" alt="OS"><br>
+<b>Système d'Exploitation</b><br>
+Windows 10/11 (64-bit)
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/-🐍-green?style=for-the-badge" alt="Python"><br>
+<b>Python</b><br>
+3.8+ (<a href="https://python.org">Télécharger</a>)
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/-💾-orange?style=for-the-badge" alt="RAM"><br>
+<b>Mémoire RAM</b><br>
+4GB minimum
+</td>
+<td align="center" width="25%">
+<img src="https://img.shields.io/badge/-🌐-purple?style=for-the-badge" alt="Internet"><br>
+<b>Connexion Internet</b><br>
+Pour les dépendances
+</td>
+</tr>
+</table>
+
+---
 
 ## ⚡ Installation Automatique (Recommandée)
 
-### 1. Cloner le Repository
+### 🎯 Méthode Ultra-Rapide
+
 ```bash
+# 1. Cloner le dépôt
 git clone https://github.com/adrien-h-hub/global-exam-ia.git
 cd global-exam-ia
+
+# 2. Windows: Double-cliquez sur ce fichier
+INSTALL_AND_RUN.bat
 ```
 
-### 2. Installation Automatique
-```bash
-# Windows: Double-cliquez sur ce fichier
-INSTALL_AND_RUN.bat
+**🎉 C'est tout! L'application s'installe et se lance automatiquement!**
 
-# Ou avec Python
+### 🐍 Méthode Python
+
+```bash
+# Installation intelligente avec Python
 python auto_setup.py
 ```
 
-**C'est tout! L'application s'installe et se lance automatiquement!**
+---
 
 ## 📋 Installation Manuelle (Alternative)
 
-### 1. Installer les Dépendances Manuellement
+### 1. Installation des Dépendances
+
 ```bash
-# Pour utilisation locale complète
+# Installation complète pour utilisation locale
 pip install -r requirements-client.txt
+
+# Ou installation minimale (serveur seulement)
+pip install -r requirements.txt
 ```
 
-### 2. Lancer l'Application
+### 2. Lancement de l'Application
+
 ```bash
+# Lanceur universel (recommandé)
 python run_app.py
+
+# Ou lanceur principal
+python launch_secure_app.py
 ```
 
 ## 🎮 Utilisation
