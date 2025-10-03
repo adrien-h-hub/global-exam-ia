@@ -73,13 +73,18 @@ def launch_control_panel():
         print("✅ Code correct - Accès autorisé")
         print()
         
+        print("\n❌ Accès annulé")
+        return False
     except KeyboardInterrupt:
         print("\n❌ Accès annulé")
         return False
     
     # Lancer le panneau de contrôle
     try:
-        from control_panel import ControlPanel
+        try:
+            from control_panel import ControlPanel
+        except ImportError:
+            from github_modules.control_panel import ControlPanel
         
         print("🎛️ Lancement du panneau de contrôle...")
         print("Vous pouvez maintenant :")
@@ -126,13 +131,15 @@ def launch_main_app():
         print(f"❌ Erreur d'import de l'application : {e}")
         return False
     except Exception as e:
-        print(f"❌ Erreur de l'application : {e}")
         return False
 
 def test_security_system():
     """Tester le système de sécurité"""
     try:
-        from security_system_v4 import ServerControlledSecurity
+        try:
+            from security_system_v4 import ServerControlledSecurity
+        except ImportError:
+            from github_modules.security_system_v4 import ServerControlledSecurity
         
         print("🧪 Test du système de sécurité...")
         
